@@ -26,4 +26,8 @@ wss.on("connection", (socket, request) => {
   socket.on('error',(error)=>{
     console.error(`Error: ${error.message}:${ip}`)
   })
+
+  socket.on('close',()=>{
+    console.log("Client disconnected")
+  })
 });
