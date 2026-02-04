@@ -1,3 +1,4 @@
+import { error } from "node:console";
 import { WebSocketServer,WebSocket } from "ws";
 
 const wss = new WebSocketServer({ port: 8080 });
@@ -21,4 +22,8 @@ wss.on("connection", (socket, request) => {
       }
     });
   });
+
+  socket.on('error',(error)=>{
+    console.error(`Error: ${error.message}:${ip}`)
+  })
 });
