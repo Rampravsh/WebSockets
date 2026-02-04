@@ -1,4 +1,4 @@
-import { WebSocketServer } from "ws";
+import { WebSocketServer,WebSocket } from "ws";
 
 const wss = new WebSocketServer({ port: 8080 });
 
@@ -16,7 +16,7 @@ wss.on("connection", (socket, request) => {
     console.log({ rawData });
 
     wss.clients.forEach((client) => {
-      if (client.readyState == 1) {
+      if (client.readyState == WebSocket.OPEN) {
         client.send(`Server Broadcast: ${message}`);
       }
     });
